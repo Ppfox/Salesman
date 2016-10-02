@@ -1,10 +1,11 @@
 var cities = [];
 var world = [];
 var worldLabel = [];
+var matchPool = [];
 
-var totalCities = 20;
-var tamCities = 8;
-var popl = 5;
+var totalCities = 15;
+var tamCities = 16;
+var popl = 150;
 var generations = 0;
 var fitness = [];
 
@@ -44,16 +45,13 @@ function swap(a, i, j){
 	a[j] = aux;
 }
 
-function calcFitness() {
-    // Reward finishing faster and getting close
-    this.fitness = (1 / ((this.finishTime+1) * this.recordDist));
+function matchingPool() {
+	for (var i = 0; i < popl; i++){
+  	fitness = pow(fitness[i], 4);
+	}
+	matingpool
+}
 
-    // Make the function exponential
-    this.fitness = pow(this.fitness, 4);
-
-    if (this.hitObstacle) this.fitness *= 0.1; // lose 90% of fitness hitting an obstacle
-    if (this.hitTarget) this.fitness *= 2; // twice the fitness for finishing!
-  }
 function calcDistance(points){
 	var sum = 0;
 	var i = 0;
@@ -92,7 +90,7 @@ function worldRecord() {
 function drawPath (a) {
 	var l = floor(255*worldRecord()/popl);
 	stroke([l, 0, 255-l*0.5]);
-	strokeWeight(1);
+	strokeWeight(3);
 	noFill();
 	beginShape();
 	for (var j = 0; j < a.length; j++){
@@ -204,3 +202,9 @@ function reboot() {
 		recordDist[i] = calcDistance(world[i]);
 	}
  }
+
+window.onclick = onCluck;
+
+function onCluck() {
+    reboot();
+}
