@@ -33,7 +33,7 @@ function draw() {
 	drawPath(world[worldRecord()]);
 
 	for (var i = 0; i < popl; i++){
-		trying(world[i]);
+		trying(world[i],i);
 	}
 	generations++;
 }
@@ -106,7 +106,7 @@ function drawCities(a) {
 	}
 }
 
-function trying (a) {
+function trying (a,p) {
 	var i = floor(random(a.length));
 	var j = floor(random(a.length));
 
@@ -114,7 +114,7 @@ function trying (a) {
 
 	var d = calcDistance(a);
 
-	if(d > worldRec()) {
+	if(d > recordDist[p]) {
 		swap(a, j, i);
 	}
 }
