@@ -1,13 +1,10 @@
 var cities = [];
 var world = [];
 var worldLabel = [];
-var matchPool = [];
 
 var totalCities = 9;
 var tamCities = 16;
 var popl = totalCities*5;
-var generations = 0;
-var fitness = [];
 
 var recordDist = [];
 var sayP;
@@ -35,7 +32,6 @@ function draw() {
 	for (var i = 0; i < popl; i++){
 		trying(world[i],i);
 	}
-	generations++;
 }
 
 function swap(a, i, j){
@@ -43,13 +39,6 @@ function swap(a, i, j){
 	aux = a[i];
 	a[i] = a[j];
 	a[j] = aux;
-}
-
-function matchingPool() {
-	for (var i = 0; i < popl; i++){
-  	fitness = pow(fitness[i], 4);
-	}
-	matingpool
 }
 
 function calcDistance(points){
@@ -129,41 +118,6 @@ function label() {
 	for (var i = 0; i < popl; i++) {
 		worldLabel[i] = world[labeled[i][2]];
 	}
-}
-function selection() {
-  var newWorld = [];
-  for (var i = 0; i < popl; i++) {
-    var parentA = random(this.matingpool).dna;
-    var parentB = random(this.matingpool).dna;
-    var child = parentA.crossover(parentB);
-    child.mutation();
-    newRockets[i] = new Rocket(child);
-  }
-  this.rockets = newRockets;
-}
-function DNA(genes) {
-  this.crossover = function(partner) {
-    var newCities = [];
-    var mid = floor(random(totalCities));
-    for (var i = 0; i < this.genes.length; i++) {
-      if (i > mid) {
-        newCities[i] = this.genes[i];
-      } else {
-        newCities[i] = partner.genes[i];
-      }
-    }
-    return new DNA(newCities);
-  }
-
-  this.mutation = function() {
-    for (var i = 0; i < this.genes.length; i++) {
-      if (random(1) < 0.05) {
-        this.genes[i] = p5.Vector.random2D();
-        this.genes[i].setMag(maxforce);
-      }
-    }
-  }
-
 }
 
 function reboot() {
