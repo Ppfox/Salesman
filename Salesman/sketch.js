@@ -3,9 +3,9 @@ var world = [];
 var worldLabel = [];
 var matchPool = [];
 
-var totalCities = 15;
+var totalCities = 9;
 var tamCities = 16;
-var popl = 150;
+var popl = totalCities*5;
 var generations = 0;
 var fitness = [];
 
@@ -27,7 +27,7 @@ function draw() {
 	}
 
 	background(20);
-	sayP.html("Record: "+floor(worldRec())+" // "+worldRecord());
+	sayP.html("Cidades (pontos):"+totalCities+" // Record: "+floor(worldRec())+"pixels. ID "+worldRecord());
 
 	drawCities(world[worldRecord()]);
 	drawPath(world[worldRecord()]);
